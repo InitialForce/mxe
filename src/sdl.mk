@@ -24,7 +24,8 @@ define $(PKG)_BUILD
         $(MXE_CONFIGURE_OPTS) \
         --enable-threads \
         --enable-directx \
-        --disable-stdio-redirect
+        --disable-stdio-redirect \
+        CFLAGS=-DDECLSPEC=     
     $(MAKE) -C '$(1)' -j '$(JOBS)'
     $(MAKE) -C '$(1)' -j 1 install-bin install-hdrs install-lib install-data
     ln -sf '$(PREFIX)/$(TARGET)/bin/sdl-config' '$(PREFIX)/bin/$(TARGET)-sdl-config'
