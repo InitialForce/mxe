@@ -30,6 +30,8 @@ define $(PKG)_BUILD
     $(MAKE) -C '$(1)' -j 1 install-bin install-hdrs install-lib install-data
     ln -sf '$(PREFIX)/$(TARGET)/bin/sdl-config' '$(PREFIX)/bin/$(TARGET)-sdl-config'
 
+    sed -i 's/-mwindows//g' "$(PREFIX)/$(TARGET)/lib/pkgconfig/sdl.pc"
+
     '$(TARGET)-gcc' \
         -W -Wall -Werror -ansi -pedantic \
         '$(2).c' -o '$(PREFIX)/$(TARGET)/bin/test-sdl.exe' \
